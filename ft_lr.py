@@ -54,6 +54,17 @@ def calculate_linear_regression(x, y):
 	a = (sum_y - b * sum_x) / n
 	return a, b
 
+def calculate_correlation(x, y):
+	n = len(x)
+	# Calculate averages
+	avg_x = sum(x) / n
+	avg_y = sum(y) / n
+
+	# Calculate correlation coefficient
+	r = sum((xi - avg_x) * (yi - avg_y) for xi, yi in zip(x, y))
+	r = r / (sum((xi - avg_x)**2 for xi in x) * sum((yi - avg_y)**2 for yi in y))**0.5
+	return r
+
 def plot_regression(mileage, price, a, b):
 	# Original data points
 	plt.scatter(mileage, price, color='blue', label='Original Data')
@@ -90,15 +101,10 @@ def main():
 				print(f" - {GREEN}{-b:.2f}{RESET}x")
 			else:
 				print(f" + {GREEN}{b:.2f}{RESET}")
+
+			r = calculate_correlation(mileage, price)
 			print(f"{YELLOW}The correlation coefficient is:{RESET}")
-			avg_x = sum(mileage) / len(mileage)
-			avg_y = sum(price) / len(price)
-			r = b**2
-			r = r * sum((xi - avg_x)**2 for xi in mileage)
-			r = r / sum((yi - avg_y)**2 for yi in price)
-			r = r**0.5
 			print(f"  r = {GREEN}{r:.2f}{RESET}")
-			plot_regression(mileage, price, a, b)
 
 			print(f"{YELLOW}Predict the price of a car with a given mileage:{RESET}")
 			while True:
@@ -112,9 +118,10 @@ def main():
 					print(f"{RED}Error: Please enter a valid number.{RESET}")
 			price_pred = a + b * mileage_input
 			print(f"The predicted price for a car with {mileage_input} km is {GREEN}{price_pred:.2f}{RESET}")
+
+			plot_regression(mileage, price, a, b)
 		else:
 			print(f"{RED}Error: Could not calculate the linear regression coefficients.{RESET}")
-
 
 if __name__ == "__main__":
 	main()
