@@ -107,7 +107,7 @@ Características:
 | Métrica       | Sensibilidad a los outliers | Interpretación        | Unidades     |
 |---------------|-----------------------------|-----------------------|--------------|
 | **MAE**       | Baja                        | Promedio de errores absolutos | Mismas que los datos |
-| **MSE**       | Alta                        | Promedio de errores al cuadrado | Mismas que y^2   |
+| **MSE**       | Alta                        | Promedio de errores al cuadrado | Mismas que $y^2$   |
 | **RMSE**      | Alta                        | Raíz cuadrada de MSE  | Mismas que los datos |
 | **$R^2$**   | No                           | Proporción de la varianza explicada | Ninguna (relativo)   |
 
