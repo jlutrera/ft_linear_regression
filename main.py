@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_linear_regresion.py                             :+:      :+:    :+:    #
+#    main.py                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jutrera- <jutrera-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/26 18:50:52 by jutrera-          #+#    #+#              #
-#    Updated: 2024/11/26 18:50:52 by jutrera-         ###   ########.fr        #
+#    Created: 2024/11/30 23:13:16 by jutrera-          #+#    #+#              #
+#    Updated: 2024/11/30 23:13:16 by jutrera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ from training import train_program
 from plotting import plot_data
 from coefficients import coef
 from errors import err
-from unicodes import *
+from macros import *
 
 def init(k):
 	if k == 1:
@@ -27,7 +27,9 @@ def init(k):
 
 def print_menu(theta0, theta1):
 	clear_terminal()
-	print(f"{CYAN}*** Linear Regression Program ***{RESET}\n")
+	print(f"{CYAN}*********************************{RESET}")
+	print(f"{CYAN}*** LINEAR REGRESSION PROGRAM ***{RESET}")
+	print(f"{CYAN}*********************************{RESET}\n")
 	if theta0 == 0 and theta1 == 0:
 		print(f"{YELLOW}Choose an option{RESET}  ( Current model: {RED}UNTRAINED{RESET} )\n")
 	else:
@@ -68,7 +70,7 @@ def main():
 				print(f"  {RED}Error: {RESET}Invalid option. Please enter a number between 1 and 7.")
 				wait_for_keypress()
 	
-	print(f"{CYAN}*** Goodbye! ***{RESET}\n")
+	print(f"  {CYAN}BYE!{RESET}\n")
 
 if __name__ == "__main__":
 	main()

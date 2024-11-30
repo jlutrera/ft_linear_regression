@@ -118,8 +118,8 @@ Características:
 - $R^2$ es una métrica estándar para evaluar el ajuste de un modelo, pero no siempre es la mejor para modelos no lineales.
 
 ### Consideraciones adicionales
-Outliers: Si tienes datos con muchos valores atípicos, las métricas como MSE y RMSE pueden no ser ideales, ya que estos errores grandes influyen mucho en el resultado final. En ese caso, MAE podría ser más robusto.
-Dependencia del contexto: Es importante elegir la métrica adecuada en función del problema que se está resolviendo. Algunas métricas pueden ser más apropiadas dependiendo de la importancia de los errores grandes en tu caso específico.
+- Outliers: Si tienes datos con muchos valores atípicos, las métricas como MSE y RMSE pueden no ser ideales, ya que estos errores grandes influyen mucho en el resultado final. En ese caso, MAE podría ser más robusto.
+- Dependencia del contexto: Es importante elegir la métrica adecuada en función del problema que se está resolviendo. Algunas métricas pueden ser más apropiadas dependiendo de la importancia de los errores grandes en tu caso específico.
 
 ## Predicción tras el aprendizaje
 En el contexto de aprendizaje automático y modelos de regresión, es inusual que un modelo prediga el valor exacto para todos los puntos de datos, especialmente en datos no vistos o de prueba. Si un modelo predice valores que son exactamente iguales a los valores reales, esto podría ser una señal de sobreajuste (Overfitting).

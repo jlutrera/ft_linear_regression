@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    utils.py                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jutrera- <jutrera-@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/30 23:19:10 by jutrera-          #+#    #+#              #
+#    Updated: 2024/11/30 23:19:10 by jutrera-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import os, sys
-from unicodes import *
+from macros import *
 
 def wait_for_keypress():
-	message = f"{B_ON_W}\nPress a key to continue...{RESET}"
+	message = f"\n  {B_ON_W}Press a key to continue...{RESET}"
 	if os.name == 'nt':  # Windows
 		import msvcrt
 		print(message, end = '', flush = True)
