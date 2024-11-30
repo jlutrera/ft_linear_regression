@@ -92,7 +92,7 @@ Características:
 El coeficiente de determinación $R^2$ mide qué tan bien los valores predichos se ajustan a los datos reales. Se calcula como:
 
 $$
-R^2 = 1 - \sum_{i=1}^n(y_i - \hat{y_i})^2 / \sum_{i=1}^n(y_i - \bar{y})^2
+R^2 = 1 - \frac{\sum_{i=1}^n(y_i - \hat{y_i})^2}{\sum_{i=1}^n(y_i - \bar{y})^2}
 $$
 
 Donde $\bar{y}$ es el valor promedio de ***y***.
