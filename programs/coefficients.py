@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-from macros import *
-from utils import wait_for_keypress
+from . import *
+from .utils import wait_for_keypress
 
 def print_coefficients(theta0, theta1):
 	print(f"  Linear regression coefficients:")

@@ -13,8 +13,8 @@
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('TkAgg')
-from macros import *
-from utils import wait_for_keypress
+from . import *
+from .utils import wait_for_keypress
 
 def plot_alpha(alphas, iterations):
 	# Clear the plot

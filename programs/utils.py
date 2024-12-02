@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 import os, sys
-from macros import *
+from . import *
 
 def wait_for_keypress():
 	message = f"\n  {B_ON_W}Press a key to continue...{RESET}"

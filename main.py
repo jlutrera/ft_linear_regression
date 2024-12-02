@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-from utils import *
-from prediction import predict_price
-from training import train_program
-from plotting import plot_data
-from coefficients import coef
-from errors import err
-from macros import *
+from programs.utils import *
+from programs.prediction import predict_price
+from programs.training import train_program
+from programs.plotting import plot_data
+from programs.coefficients import coef
+from programs.errors import err
+from programs import *
 
 def init(k):
 	if k == 1:
