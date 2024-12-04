@@ -21,7 +21,9 @@ def plot_alpha(alphas, iterations):
 	if plt.fignum_exists(1):
 		plt.close(1)
 	plt.ion()
-
+	plt.figure(1)
+	manager = plt.get_current_fig_manager()
+	manager.set_window_title('Learning Rate Decay')
 	# Plot the learning rate decay
 	plt.plot(alphas, color='blue')
 	plt.xlabel('Iterations')
@@ -44,6 +46,8 @@ def plot_regression(mileage, price, theta0, theta1):
 		plt.close(2)
 	plt.ion()
 	plt.figure(2)
+	manager = plt.get_current_fig_manager()
+	manager.set_window_title('Linear Regression')
 	# Original data points
 	plt.scatter(mileage, price, color='blue', label='Original Data')
 	# Generate points for the regression line
