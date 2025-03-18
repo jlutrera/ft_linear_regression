@@ -38,5 +38,3 @@ def clear_terminal():
 	# Para Windows
 	elif os.name == 'nt':
 		os.system('cls')
-
-__all__ = ['wait_for_keypress', 'clear_terminal']

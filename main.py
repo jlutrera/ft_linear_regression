@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-from programs.utils import *
+from programs.utils import clear_terminal, wait_for_keypress
 from programs.prediction import predict_price
 from programs.training import train_program
 from programs.plotting import plot_data
