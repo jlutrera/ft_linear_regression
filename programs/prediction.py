@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 from . import *
-from .utils import wait_for_keypress
+from .waitkey import wait_for_keypress
 
 def predict_price(theta0, theta1):
 	while True:

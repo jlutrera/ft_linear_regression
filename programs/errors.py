@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-from. import *
-from .utils import wait_for_keypress
+from . import *
+from .waitkey import wait_for_keypress
 
 def calc_error(x, y, theta0, theta1):
 	n = len(x)

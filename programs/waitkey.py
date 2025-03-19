@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 import os, sys
-from . import *
+from . import B_ON_W, RESET
 
 def wait_for_keypress():
 	message = f"\n  {B_ON_W}Press a key to continue...{RESET}"
@@ -19,7 +19,7 @@ def wait_for_keypress():
 		import msvcrt
 		print(message, end = '', flush = True)
 		msvcrt.getch()
-	else:  # Linux y macOS
+	else:  # Linux
 		print(message, end = '', flush = True)
 		import termios
 		import tty
@@ -30,11 +30,3 @@ def wait_for_keypress():
 			sys.stdin.read(1)
 		finally:
 			termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-
-def clear_terminal():
-	# Para Linux y macOS
-	if os.name == 'posix':
-		os.system('clear')
-	# Para Windows
-	elif os.name == 'nt':
-		os.system('cls')

@@ -10,13 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 
-from programs.utils import clear_terminal, wait_for_keypress
+from programs import *
+from programs.waitkey import wait_for_keypress
 from programs.prediction import predict_price
 from programs.training import train_program
 from programs.plotting import plot_data
 from programs.coefficients import coef
 from programs.errors import err
-from programs import *
+import os
+
+def clear_terminal():
+	# Linux
+	if os.name == 'posix':
+		os.system('clear')
+	# Windows
+	elif os.name == 'nt':
+		os.system('cls')
 
 def init(k):
 	if k == 1:
@@ -35,7 +44,7 @@ def print_menu(theta0, theta1):
 	else:
 		print(f"{YELLOW}Choose an option{RESET}  ( Current model: {GREEN}TRAINED{RESET} )\n")
 	print(f"  {YELLOW}1{RESET}. Predict the price of a car with a given mileage")
-	print(f"  {YELLOW}2{RESET}. Train the model with a CSV file.")
+	print(f"  {YELLOW}2{RESET}. Train the model with {GREEN}data.csv{RESET} file.")
 	print(f"  {YELLOW}3{RESET}. Plot the data and the regression line")
 	print(f"  {YELLOW}4{RESET}. Print the equation and coefficients")
 	print(f"  {YELLOW}5{RESET}. Print the prediction errors")

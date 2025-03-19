@@ -10,11 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-import matplotlib.pyplot as plt
-import matplotlib
-matplotlib.use('TkAgg')
 from . import *
-from .utils import wait_for_keypress
+from .waitkey import wait_for_keypress
+import matplotlib.pyplot as plt
+import matplotlib; matplotlib.use('TkAgg')
 
 def plot_alpha(alphas, iterations):
 	# Clear the plot

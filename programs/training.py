@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 from . import *
+from .waitkey import wait_for_keypress
 from .plotting import plot_alpha
-from .utils import wait_for_keypress
 import csv
 
 def read_csv_data():
