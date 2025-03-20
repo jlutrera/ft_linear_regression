@@ -44,7 +44,7 @@ def print_menu(theta0, theta1):
 	else:
 		print(f"{YELLOW}Choose an option{RESET}  ( Current model: {GREEN}TRAINED{RESET} )\n")
 	print(f"  {YELLOW}1{RESET}. Predict the price of a car with a given mileage")
-	print(f"  {YELLOW}2{RESET}. Train the model with {GREEN}data.csv{RESET} file.")
+	print(f"  {YELLOW}2{RESET}. Train the model with a CSV file.")
 	print(f"  {YELLOW}3{RESET}. Plot the data and the regression line")
 	print(f"  {YELLOW}4{RESET}. Print the equation and coefficients")
 	print(f"  {YELLOW}5{RESET}. Print the prediction errors")

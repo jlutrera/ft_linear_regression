@@ -156,6 +156,59 @@ Supongamos que estás utilizando regresión lineal para hacer predicciones. Si e
 #### Ejemplo Visual de Overfiting:
 Imagina que estás ajustando una línea de regresión a un conjunto de puntos de datos. Una regresión lineal simple podría ajustarse bien a los datos con una línea recta. Sin embargo, si ajustas un polinomio de alto grado, la curva podría ajustarse exactamente a los puntos de datos, pero sería muy sensible a pequeños cambios, especialmente si se introduce un nuevo dato. Este modelo excesivamente complejo podría tener un error pequeño en los datos de entrenamiento, pero tendría un mal desempeño con datos nuevos, lo que indica un Overfitting.
 
+### Regularización
+
+Las estrategias de regularización incorporan penalizaciones en el ajuste por mínimos cuadrados ordinarios (OLS) con el objetivo de evitar overfitting, reducir varianza, atenuar el efecto de la correlación entre predictores y minimizar la influencia en el modelo de los predictores menos relevantes. Por lo general, aplicando regularización se consigue modelos con mayor poder predictivo (generalización).
+
+Dado que estos métodos de regularización actúan sobre la magnitud de los coeficientes del modelo, todos deben de estár en la misma escala, por esta razón es necesario estandarizar o normalizar los predictores antes de entrenar el modelo.
+
+#### Ridge
+
+La regularización Ridge penaliza la suma de los coeficientes elevados al cuadrado
+			$$||\beta||_2^2 = \sum_{j=1}^{p} \beta_j^2$$
+
+ A esta penalización se le conoce como l2 y tiene el efecto de reducir de forma proporcional el valor de todos los coeficientes del modelo pero sin que estos lleguen a cero. El grado de penalización está controlado por el hiperparámetro  λ.
+ 
+ Cuando  λ=0, la penalización es nula y el resultado es equivalente al de un modelo lineal por mínimos cuadrados ordinarios (OLS). A medida que  λ aumenta, mayor es la penalización y menor el valor de los predictores.
+
+$$\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij} \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2 = \text{suma de residuos cuadrados} + \lambda \sum_{j=1}^{p} \beta_j^2$$
+ 
+La principal ventaja de aplicar ridge frente al ajuste por mínimos cuadrados ordinarios (OLS) es la reducción de varianza. Por lo general, en situaciones en las que la relación entre la variable respuesta y los predictores es aproximadamente lineal, las estimaciones por mínimos cuadrados tienen poco bias pero aún pueden sufrir alta varianza (pequeños cambios en los datos de entrenamiento tienen mucho impacto en el modelo resultante). Este problema se acentúa conforme el número de predictores introducido en el modelo se aproxima al número de observaciones de entrenamiento, llegando al punto en que, si  p>n, no es posible ajustar el modelo por mínimos cuadrados ordinarios. Empleando un valor adecuado de  λ, el método de ridge es capaz de reducir varianza sin apenas aumentar el bias, consiguiendo así un menor error total.
+
+La desventaja del método ridge es que, el modelo final, incluye todos los predictores. Esto es así porque, si bien la penalización fuerza a que los coeficientes tiendan a cero, nunca llegan a ser exactamente cero (solo si  λ=∞). Este método consigue minimizar la influencia sobre el modelo de los predictores menos relacionados con la variable respuesta pero, en el modelo final, van a seguir apareciendo. Aunque esto no supone un problema para la precisión del modelo, sí lo es para su interpretación.
+
+#### Lasso
+
+La regularización Lasso penaliza la suma del valor absolutos de los coeficientes de regresión
+			$$||\beta||_1 = \sum_{j=1}^{p} |\beta_j|$$
+
+A esta penalización se le conoce como l1 y tiene el efecto de forzar a que los coeficientes de los predictores tiendan a cero. Dado que un predictor con coeficiente de regresión cero no influye en el modelo, lasso consigue excluir los predictores menos relevantes. Al igual que en ridge, el grado de penalización está controlado por el hiperparámetro  λ. Cuando  λ=0, el resultado es equivalente al de un modelo lineal por mínimos cuadrados ordinarios. A medida que  λ aumenta, mayor es la penalización y más predictores quedan excluidos.
+
+$$\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij} \right)^2 + \lambda \sum_{j=1}^{p} |\beta_j| = \text{suma de residuos cuadrados} + \lambda \sum_{j=1}^{p} |\beta_j|$$
+
+ 
+#### Comparación Ridge y Lasso
+
+La principal diferencia práctica entre lasso y ridge es que el primero consigue que algunos coeficientes sean exactamente cero, por lo que realiza selección de predictores, mientras que el segundo no llega a excluir ninguno. Esto supone una ventaja notable de lasso en escenarios donde no todos los predictores son importantes para el modelo y se desea que los menos influyentes queden excluidos.
+
+Por otro lado, cuando existen predictores altamente correlacionados (linealmente), ridge reduce la influencia de todos ellos a la vez y de forma proporcional, mientras que lasso tiende a seleccionar uno de ellos, dándole todo el peso y excluyendo al resto. En presencia de correlaciones, esta selección varía mucho con pequeñas perturbaciones (cambios en los datos de entrenamiento), por lo que, las soluciones de lasso, son muy inestables si los predictores están altamente correlacionados.
+
+Para conseguir un equilibrio óptimo entre estas dos propiedades, se puede emplear lo que se conoce como penalización elastic net, que combina ambas estrategias.
+
+#### Elastic net
+
+Elastic net incluye una regularización que combina la penalización l1 y l2  $$\alpha \lambda ||\beta||_1 + \frac{1}{2} (1 - \alpha) ||\beta||_2^2$$
+
+El grado en que influye cada una de las penalizaciones está controlado por el hiperparámetro  α
+
+Su valor está comprendido en el intervalo [0,1]. Cuando  α=0, se aplica ridge y cuando  α=1 se aplica Lasso. La combinación de ambas penalizaciones suele dar lugar a buenos resultados. Una estrategia frecuentemente utilizada es asignarle casi todo el peso a la penalización l1 ( α muy próximo a 1) para conseguir seleccionar predictores y un poco a la l2 para dar cierta estabilidad en el caso de que algunos predictores estén correlacionados.
+
+$$\frac{\sum_{i=1}^{n} \left( y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij} \right)^2}{2n} + \lambda \left( \alpha \sum_{j=1}^{p} |\beta_j| + \frac{1-\alpha}{2} \sum_{j=1}^{p} \beta_j^2 \right)$$
+
+Se emplee un método u otro <u>siempre hay que estandarizar o normalizar los predictores</u>.
+
+Aunque el valor óptimo de  λ es aquel con el que se minimiza el error de validación cruzada, una práctica extendida es utilizar, en lugar de este, el mayor valor de  λ que se aleja menos de una desviación típica del óptimo. De este modo, se consigue un modelo más sencillo (excluye más predictores) pero cuya capacidad predictiva es similar a la conseguida con el modelo más complejo.
+
 ### Conclusión
 - El Overfitting ocurre cuando el modelo se vuelve demasiado complejo y se ajusta demasiado a los datos de entrenamiento, capturando el ruido en lugar de los patrones reales.
 - Si un modelo predice valores exactos, podría estar sufriendo deOverfitting, especialmente si el rendimiento en los datos de prueba es malo.
@@ -169,3 +222,4 @@ Imagina que estás ajustando una línea de regresión a un conjunto de puntos de
 5. ¿Qué es el sobreajuste?: En castellano https://www.ibm.com/es-es/topics/overfitting?mhsrc=ibmsearch_a&mhq=overfitting y en inglés:
 https://www.ibm.com/topics/overfitting?mhsrc=ibmsearch_a&mhq=overfitting
 6. What Is Overfitting In Machine Learning: https://robots.net/fintech/what-is-overfitting-in-machine-learning/
+7. Regularización del Overfitting: https://cienciadedatos.net/documentos/py14-ridge-lasso-elastic-net-python

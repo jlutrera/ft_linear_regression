@@ -18,7 +18,8 @@ import csv
 def read_csv_data():
 	mileage = []
 	price = []
-	csv_file = "data.csv"
+	csv_file = input("Enter the CSV file name (with the path if it's necessary): ")
+
 	try:
 		with open(csv_file, 'r') as file:
 			reader = csv.reader(file)
@@ -52,10 +53,10 @@ def calc_linear_regression(x, y):
 
 		alphas.append(alpha)
 		errors = [theta0 + theta1 * xi - yi for xi, yi in zip(norm_x, norm_y)]
-		temp_theta0 = sum(errors) / n
-		temp_theta1 = sum(error * xi for error, xi in zip(errors, norm_x)) / n
-		theta0 -= alpha * temp_theta0
-		theta1 -= alpha * temp_theta1
+		temp_theta0 = alpha * sum(errors) / n
+		temp_theta1 = alpha * sum(error * xi for error, xi in zip(errors, norm_x)) / n
+		theta0 -= temp_theta0
+		theta1 -= temp_theta1
 		# Calculate the loss
 		loss = sum(error ** 2 for error in errors) / (2 * n)
 		# Early stopping
@@ -74,7 +75,6 @@ def train_program():
 	if mileage and price:
 		theta0, theta1 = calc_linear_regression(mileage, price)
 	else:
-		print(f"  {RED}Error: {RESET}Could not train the model.")
 		wait_for_keypress()
-		theta0, theta1 = None, None
+		theta0, theta1 = 0, 0
 	return mileage, price, theta0, theta1
