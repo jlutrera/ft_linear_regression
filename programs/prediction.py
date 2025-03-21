@@ -11,9 +11,8 @@
 # **************************************************************************** #
 
 from . import *
-from .waitkey import wait_for_keypress
 
-def predict_price(theta0, theta1):
+def prediction(theta0, theta1):
 	while True:
 		try:
 			mileage = float(input(f"  Enter the mileage: {GREEN}"))
@@ -30,6 +29,3 @@ def predict_price(theta0, theta1):
 		price = 0
 	
 	print(f"  Predicted price: {GREEN}{price:.2f}{RESET}")
-
-	wait_for_keypress()
-

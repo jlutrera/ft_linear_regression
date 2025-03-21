@@ -11,23 +11,17 @@
 # **************************************************************************** #
 
 from . import *
-from .waitkey import wait_for_keypress
 
-def print_coefficients(theta0, theta1):
-	print(f"  Linear regression coefficients:")
-	print(f"    {THETA}{SUB0} = {GREEN}{theta0:.2f}{RESET}")
-	print(f"    {THETA}{SUB1} = {GREEN}{theta1:.2f}{RESET}")
-
-	print(f"\n  Equation of the regression line:")
-	if theta1 < 0:
-		print(f"    y = {GREEN}{theta0:.2f}{RESET} - {GREEN}{-theta1:.2f}{RESET}{DOT}x")
-	else:
-		print(f"    y = {GREEN}{theta0:.2f}{RESET} + {GREEN}{theta1:.2f}{RESET}{DOT}x")
-
-def coef(mileage, price, theta0, theta1):
+def coefficients(mileage, price, theta0, theta1):
 	if mileage and price and theta0 is not None and theta1 is not None:
-		print_coefficients(theta0, theta1)
-	else:
-		print(f"  {RED}Error: {RESET}Could not calculate the linear regression coefficients.")
+		print(f"  Linear regression coefficients:")
+		print(f"    {THETA}{SUB0} = {GREEN}{theta0:.2f}{RESET}")
+		print(f"    {THETA}{SUB1} = {GREEN}{theta1:.2f}{RESET}")
 
-	wait_for_keypress()
+		print(f"\n  Equation of the regression line:")
+		if theta1 < 0:
+			print(f"    y = {GREEN}{theta0:.2f}{RESET} - {GREEN}{-theta1:.2f}{RESET}{DOT}x")
+		else:
+			print(f"    y = {GREEN}{theta0:.2f}{RESET} + {GREEN}{theta1:.2f}{RESET}{DOT}x")
+	else:
+		print(f"  {RED}Error: {RESET}The model is untrained.")

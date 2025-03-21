@@ -89,7 +89,7 @@ Características:
 - RMSE es más sensible a los outliers que MAE, debido a la amplificación de los errores grandes.
 
 ### **Coeficiente de Determinación ($R^2$):**
-El coeficiente de determinación $R^2$ mide qué tan bien los valores predichos se ajustan a los datos reales. Se calcula como:
+El coeficiente de determinación $R^2$ mide cuánto se ajustan los valores predichos a los datos reales. Se calcula como:
 
 $$
 R^2 = 1 - \frac{\sum_{i=1}^n(y_i - \hat{y_i})^2}{\sum_{i=1}^n(y_i - \bar{y})^2}
@@ -109,7 +109,7 @@ Características:
 | **MAE**       | Baja                        | Promedio de errores absolutos | Mismas que los datos |
 | **MSE**       | Alta                        | Promedio de errores al cuadrado | Mismas que $y^2$   |
 | **RMSE**      | Alta                        | Raíz cuadrada de MSE  | Mismas que los datos |
-| **$R^2$**   | No                           | Proporción de la varianza explicada | Ninguna (relativo)   |
+| **$R^2$**   | No                           | Proporción de la variabilidad de la variable dependiente que es explicada por el modelo | Ninguna (relativo)   |
 
 ### Elección de la métrica adecuada
 - MAE es útil cuando quieres tratar los errores de manera igualitaria y no te importa si los errores grandes ocurren.
