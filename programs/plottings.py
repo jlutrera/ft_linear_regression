@@ -28,6 +28,10 @@ def plot_alpha(alphas, iterations):
 		plt.ylabel('Learning Rate')
 		plt.title(f'Learning Rate Decay : {ALPHA} = {ALPHA}{SUB0} / (1 + k{DOT}t)')
 		plt.grid(True)
+
+		# manager = plt.get_current_fig_manager()
+		# if hasattr(manager, "toolbar"):
+		# 	manager.toolbar.setVisible(False)
 		plt.get_current_fig_manager().canvas.manager.toolbar.pack_forget()
 
 		plt.text(0.7, 0.9, f'{ALPHA} = [{alphas[0]:.2f}, {alphas[-1]:.2f}]', transform=plt.gca().transAxes, ha='left', fontsize=12)
@@ -70,7 +74,12 @@ def plot_data(mileage, price, theta0, theta1):
 		plt.title('Linear Regression line & data')
 		plt.legend()
 		plt.grid(True)
+		
+		# manager = plt.get_current_fig_manager()
+		# if hasattr(manager, "toolbar"):
+		# 	manager.toolbar.setVisible(False)
 		plt.get_current_fig_manager().canvas.manager.toolbar.pack_forget()
+
 		plt.show()
 		plt.draw()
 		plt.pause(0.1)
