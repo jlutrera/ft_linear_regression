@@ -13,7 +13,7 @@
 from programs import *
 from programs.prediction import prediction
 from programs.training import training
-from programs.plottings import plot_data, plot_alpha
+from programs.plottings import plot_data, plot_alpha, close_plots
 from programs.coefficients import coefficients
 from programs.errors import errors
 from programs.regularization import regularization
@@ -77,6 +77,7 @@ def main():
 	while True:
 		option = print_menu(theta0, theta1)
 		e = 0
+		close_plots()
 		match option:
 			case '1':
 				prediction(theta0, theta1)

@@ -13,6 +13,10 @@
 from . import *
 import matplotlib.pyplot as plt
 
+def close_plots():
+	if plt.get_fignums():
+		plt.close('all')
+
 def plot_alpha(alphas, iterations):
 	if alphas is not None and iterations > 0:
 		# Clear the plot
