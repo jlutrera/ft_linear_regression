@@ -29,12 +29,13 @@ def errors(x, y, theta0, theta1):
 		#   It is simply the square root of the MSE
 		rmse = mse ** 0.5
 
-		y_mean = sum(y) / n
-		ss_total = sum((yi - y_mean) ** 2 for yi in y)
-		ss_residual = sum((yi - y_hat) ** 2 for yi, y_hat in zip(y, y_pred))
-
 		# Coefficient of Determination:
 		#   Measures how well the predicted values fit the actual data
+		y_mean = sum(y) / n
+		ss_total = sum((yi - y_mean) ** 2 for yi in y)
+		if ss_total == 0:
+			ss_total = EPS  # Avoid division by zero
+		ss_residual = sum((yi - y_hat) ** 2 for yi, y_hat in zip(y, y_pred))	
 		r2 = 100 * (1 - (ss_residual / ss_total))
 
 		print(f"  MAE  = {GREEN}{mae:.2f}{RESET}")
