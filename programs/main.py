@@ -15,7 +15,7 @@ from programs.prediction import prediction
 from programs.training import training
 from programs.plottings import plot_data, plot_alpha, close_plots
 from programs.coefficients import coefficients
-from programs.errors import errors
+from programs.errors import print_outliers_report
 from programs.regularization import regularization
 import os, sys
 
@@ -61,9 +61,9 @@ def print_menu(theta0, theta1):
 	print(f"{CYAN}BONUS:{RESET}")
 	print(f"  {YELLOW}3{RESET}. Plot the data and the regression line")
 	print(f"  {YELLOW}4{RESET}. Print the equation and coefficients")
-	print(f"  {YELLOW}5{RESET}. Print the prediction errors")
+	print(f"  {YELLOW}5{RESET}. Print the prediction errors and outliers")
 	print(f"  {YELLOW}6{RESET}. Plot the learning rate")
-	print(f"  {YELLOW}7{RESET}. Apply regularization\n")
+	print(f"  {YELLOW}7{RESET}. Apply regularization")
 	print(f"  {YELLOW}r{RESET}. Reset")
 	print(f"  {YELLOW}q{RESET}. Quit\n")
 	
@@ -88,7 +88,7 @@ def main():
 			case '4':
 				coefficients(mileage, price, theta0, theta1)
 			case '5':
-				errors(mileage, price, theta0, theta1)
+				print_outliers_report(mileage, price, theta0, theta1)
 			case '6':
 				e = plot_alpha(alphas, t)
 			case '7':
