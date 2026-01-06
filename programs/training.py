@@ -13,6 +13,7 @@
 from . import *
 import csv
 
+# --- LECTURA DE DATOS DEL ARCHIVO CSV ---
 def read_csv_data():
 	mileage = []
 	price = []
@@ -31,28 +32,27 @@ def read_csv_data():
 
 	return mileage, price
 
+# --- CÁLCULO DE LOS VALORES REQUERIDOS ---
 def calc_values(x, y):
-	# --- 1. Normalización Min-Max ---
+	# Normalización Min-Max
 	x_min, x_max = min(x), max(x)
 	y_min, y_max = min(y), max(y)
 
 	norm_x = [(xi - x_min) / (x_max - x_min + EPS) for xi in x]
 	norm_y = [(yi - y_min) / (y_max - y_min + EPS) for yi in y]
 
-	# --- 2. Inicialización ---
+	# Inicialización
 	previous_loss = float('inf')
 	theta0, theta1 = 0, 0
 	n = len(x)
-
 	alphas = []
-	# --- 3. Gradient Descent ---
+
+	# Gradient Descent
 	for t in range(ITER):
 		# Learning rate decay
-		alpha = ALPHA0 / (1 + K * t) 
-		# Also could be done with ALPHA0 * (exp(-K * t))
+		alpha = ALPHA0 / (1 + K * t) # También podría ser: ALPHA0 * (exp(-K * t))
 		alphas.append(alpha)
 
-		# Hipótesis sobre datos normalizados
 		errors = [theta0 + theta1 * xi - yi for xi, yi in zip(norm_x, norm_y)]
 
 		# Gradientes
@@ -72,16 +72,21 @@ def calc_values(x, y):
 
 		previous_loss = loss
 
-	# --- 4. Desnormalización ---
+	# Desnormalización
 	b = theta1 * (y_max - y_min) / (x_max - x_min)
 	a = y_min + theta0 * (y_max - y_min) - b * x_min
 
-	return a, b, alphas, t, 1
+	return a, b, alphas, t
 
+# --- PROGRAMA PRINCIPAL ---
 def training():
+	# Lectura de datos del archivo
 	mileage, price = read_csv_data()
+
+	# Cálculo de los parámetros requeridos
 	if mileage and price:
-		theta0, theta1, alphas, t, e = calc_values(mileage, price)
-	else:
-		theta0, theta1, alphas, t, e = 0, 0, [], 0, 0
-	return mileage, price, theta0, theta1, alphas, t, e
+		theta0, theta1, alphas, t = calc_values(mileage, price)
+		return mileage, price, theta0, theta1, alphas, t
+
+	# Si no hay datos válidos, devolvemos lo que ya había
+	return mileage, price, None, None, [], 0

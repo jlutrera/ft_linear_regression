@@ -116,9 +116,7 @@ def print_outliers_report(x, y, theta0, theta1, factor=2.0):
 
         print(f"{MAGENTA}  Outliers found:{RESET}\n")
 
-        # ============================
-        #   CÁLCULO DINÁMICO DE ANCHOS
-        # ============================
+        #   Cálculo de anchos
         id_w    = max(len("idx"),   max(len(str(o["index"])) for o in outliers))
         x_w     = max(len("x"),     max(len(f"{o['x']:.2f}") for o in outliers))
         y_w     = max(len("y"),     max(len(f"{o['y']:.2f}") for o in outliers))
@@ -148,6 +146,5 @@ def print_outliers_report(x, y, theta0, theta1, factor=2.0):
             print(f"  {RED}{id_val}  {x_val}  {y_val}  {pred_val}  {resid_val}{RESET}")
 
         print()
-
     else:
         print(f"  {RED}Error: {RESET}The model is untrained.")

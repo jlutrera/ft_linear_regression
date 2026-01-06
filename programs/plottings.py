@@ -45,12 +45,10 @@ def plot_alpha(alphas, iterations):
 		plt.show()
 		plt.draw()
 		plt.pause(0.1)
-		return 1
 	else:
 		print(f"  {RED}Error: {RESET}The model is untrained.")
-		return 0
 
-
+# --- FUNCIÓN PRINCIPAL PARA REPRESENTAR LOS DATOS
 def plot_data(mileage, price, theta0, theta1):
 	if mileage and price and theta0 is not None and theta1 is not None:
 		# Clear the plot
@@ -87,7 +85,5 @@ def plot_data(mileage, price, theta0, theta1):
 		plt.show()
 		plt.draw()
 		plt.pause(0.1)
-		return 1
 	else:
 		print(f"  {RED}Error: {RESET}The model is untrained.")
-		return 0
