@@ -36,7 +36,9 @@ def plot_alpha(alphas, iterations):
 		# manager = plt.get_current_fig_manager()
 		# if hasattr(manager, "toolbar"):
 		# 	manager.toolbar.setVisible(False)
-		plt.get_current_fig_manager().canvas.manager.toolbar.pack_forget()
+		toolbar = plt.get_current_fig_manager().canvas.manager.toolbar
+		toolbar.hide()
+
 
 		plt.text(0.7, 0.9, f'{ALPHA} = [{alphas[0]:.2f}, {alphas[-1]:.2f}]', transform=plt.gca().transAxes, ha='left', fontsize=12)
 		plt.text(0.7, 0.85, f't  = [0, {iterations}]', transform=plt.gca().transAxes, ha='left', fontsize=12)
@@ -80,7 +82,8 @@ def plot_data(mileage, price, theta0, theta1):
 		# manager = plt.get_current_fig_manager()
 		# if hasattr(manager, "toolbar"):
 		# 	manager.toolbar.setVisible(False)
-		plt.get_current_fig_manager().canvas.manager.toolbar.pack_forget()
+		toolbar = plt.get_current_fig_manager().canvas.manager.toolbar
+		toolbar.hide()
 
 		plt.show()
 		plt.draw()
